@@ -125,6 +125,7 @@ defmodule BypassTest do
     end)
   end
 
+  @tag :wip2
   test "closing a bypass while the request is in-flight with expect" do
     :expect |> closing_in_flight
   end
@@ -145,6 +146,7 @@ defmodule BypassTest do
       end
     ])
 
+    IO.inspect(bypass.port)
     assert {:error, _conn, %Mint.TransportError{reason: :closed}, _responses} =
              request(bypass.port)
   end
@@ -182,6 +184,7 @@ defmodule BypassTest do
     assert_received ^ref
   end
 
+  @tag :wip
   test "Concurrent calls to down" do
     test_process = self()
     ref = make_ref()
@@ -246,6 +249,7 @@ defmodule BypassTest do
     end)
   end
 
+  @tag :wip
   test "Bypass can handle concurrent requests with expect" do
     bypass = Bypass.open()
     parent = self()
@@ -271,6 +275,7 @@ defmodule BypassTest do
     end)
   end
 
+  @tag :wip
   test "Bypass can handle concurrent requests with expect_once" do
     bypass = Bypass.open()
     parent = self()
@@ -293,18 +298,22 @@ defmodule BypassTest do
     end)
   end
 
+  @tag :wip
   test "Bypass.stub/4 does not raise if request is made" do
     :stub |> specific_route
   end
 
+  @tag :wip
   test "Bypass.stub/4 does not raise if request is not made" do
     :stub |> set_expectation("/stub_path")
   end
 
+  @tag :wip
   test "Bypass.expect/4 can be used to define a specific route" do
     :expect |> specific_route
   end
 
+  @tag :wip
   test "Bypass.expect_once/4 can be used to define a specific route" do
     :expect_once |> specific_route
   end
@@ -346,14 +355,17 @@ defmodule BypassTest do
     end)
   end
 
+  @tag :wip
   test "Bypass.stub/4 does not raise if request with parameters is made" do
     :stub |> specific_route_with_params
   end
 
+  @tag :wip
   test "Bypass.expect/4 can be used to define a specific route with parameters" do
     :expect |> specific_route_with_params
   end
 
+  @tag :wip
   test "Bypass.expect_once/4 can be used to define a specific route with parameters" do
     :expect_once |> specific_route_with_params
   end
@@ -388,10 +400,12 @@ defmodule BypassTest do
     end)
   end
 
+  @tag :wip
   test "All routes to a Bypass.expect/4 call must be called" do
     :expect |> all_routes_must_be_called
   end
 
+  @tag :wip
   test "All routes to a Bypass.expect_once/4 call must be called" do
     :expect_once |> all_routes_must_be_called
   end
@@ -467,10 +481,12 @@ defmodule BypassTest do
     end
   end
 
+  @tag :wip
   test "Bypass.expect/4 can be used to define a specific route and then redefine it later" do
     :expect |> specific_route_redefined
   end
 
+  @tag :wip
   test "Bypass.expect_once/4 can be used to define a specific route and then redefine it later" do
     :expect_once |> specific_route_redefined
   end
